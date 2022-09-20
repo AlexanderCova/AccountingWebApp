@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+
+<style type="text/css">
+
+	@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+	* {
+		font-family: 'Roboto', sans-serif;
+
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+
+	.content-table {
+		border-collapse: collapse;
+		margin:  25px 0;
+		font-size: 0.9em;
+		min-width: 400px;
+		width: 100%;
+
+	}
+
+	.table-heading {
+		background-color: #111111;
+		color:  #ffffff;
+		text-align: left;
+		font-weight: bold;
+		border-radius: 50px;
+	}
+
+	.content-table th,
+	.content-table td {
+		padding: 12px 15px;	
+	}
+
+	.content-table tbody tr {
+		border-bottom: 1px solid #dddddd;
+	}
+
+
+	
+
+	.newItemButton {
+		font-size: 20pt;
+		background-color: black;
+		border-radius: 15px;
+		
+	}
+
+	.newItemButton a {
+		color:  white;
+	}
+
+	.topSection {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 20px;
+	}
+
+	@media screen and (min-width: 480px) {
+		.topSection {
+			display: grid;
+			grid-gap: 10px;
+			grid-template-columns: 3fr 1fr 1fr;
+		}
+
+		.searchBar {
+			box-sizing: border-box;
+			width: 100%;
+			padding-left: 36px;
+			height: 48px;
+			background-image: url('https://th.bing.com/th/id/OIP.8EpB3Op1aJ0A4VJlln5nwgHaHa?pid=ImgDet&rs=1');
+			background-size: 20px;
+			background-position-x: 10px;
+			background-position-y: 50%;
+			background-repeat: no-repeat;
+			border-radius: 100px;
+			grid-column: 1/ span 2;
+			grid-row: 1;
+		}
+
+		.searchForm {
+			display: grid;
+			grid-template-columns: repeat(2, 200px);
+			grid-gap: 10px;
+		}
+
+		select {
+			grid-row: 2;
+			grid-column: 1;
+		} 
+
+		.searchButton {
+			grid-row: 2;
+			grid-column: 2;
+			background-color: black;
+			color:  white;
+			border-radius: 5px;
+		}
+	}
+
+
+
+	.exportButton {
+		font-size: 20pt;
+		background-color: black;
+		border-radius: 15px;
+	}
+
+	.exportButton a {
+		color:  white;
+	}
+</style>
+
+
+
+
+<body>
+
+	<h1>Accounting</h1>
+
+	<hr>
+
+	<div class="topSection">
+		<form action="/" method="GET" class="searchForm">
+			<input type="text" name="item-name" class="searchBar">
+			<select name="category">
+				<option value="default" disabled selected hidden>Category</option>
+				<option value="equiptment">Equiptment</option>
+				<option value="packaging" >Packaging</option>
+				<option value="food">Food</option>
+			</select>
+
+			<input type="submit" class="searchButton">
+		</form>
+	
+		<button class="exportButton"><a href="/export">Export To Excel</a></button>
+
+		<button class="newItemButton"><a href="/add-item" >New Record</a></button>
+	</div>
+
+	
+
+	<table class="content-table">
+		<tr class="table-heading">
+			{% for header in headings %}
+			<th>{{header}}</th>
+			{% endfor %}
+		</tr>
+
+		{% for row in data %}
+		<tr>
+			{% for cell in row %}
+			<td>{{ cell }}</td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+		
+
+	</table>
+
+
+
+</body>
+</html>
